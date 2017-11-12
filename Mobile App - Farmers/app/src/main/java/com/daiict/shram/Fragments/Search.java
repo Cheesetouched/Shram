@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.daiict.shram.R;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.NaturalLanguageUnderstanding;
 import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalysisResults;
@@ -60,6 +61,8 @@ public class Search extends Fragment {
     private String src = "";
 
     private String dark_sky;
+
+    private JSONObject tempjsonobject;
 
     private JSONObject dark_sky_object;
 
@@ -194,75 +197,7 @@ public class Search extends Fragment {
     }
 
 
-    public void getImage(final String image) {
-
-        class RegisterUser extends AsyncTask<String, Void, String> {
-
-            ProgressDialog loading;
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-
-                loading = new ProgressDialog(getContext(), R.style.MyTheme);
-
-                loading.setCancelable(false);
-
-                loading.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
-
-                loading.show();
-
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                loading.dismiss();
-
-                Picasso.with(getContext())
-                        .load(s)
-                        .fit()
-                        .centerCrop()
-                        .into(display);
-
-                display.setVisibility(View.VISIBLE);
-
-                if (s == "") {
-
-                    alert("No Image Found!");
-
-                } else {
-
-                    header.setVisibility(View.VISIBLE);
-
-                    header.setText("Results");
-
-                    header.setTextColor(getResources().getColor(R.color.black));
-
-                    data.setVisibility(View.VISIBLE);
-
-                }
-
-            }
-
-            @Override
-            protected String doInBackground(String... params) {
-
-                String result = getImg(image);
-
-                return result;
-
-            }
-        }
-
-        RegisterUser ru = new RegisterUser();
-
-        ru.execute(image);
-
-    }
-
-
-    public String getImg(String image) {
+    public String getImageBackground(String image) {
 
         String webURL = "https://www.pexels.com/search/" + image;
 
@@ -291,47 +226,124 @@ public class Search extends Fragment {
     }
 
 
-    public void getDisplayImage(String image) {
+    public void getImage(final String image) {
 
-        String webURL = "https://www.pexels.com/search/" + image;
+        class RegisterUser extends AsyncTask<String, Void, String> {
 
-        try {
+            ProgressDialog loading;
 
-            Document doc = Jsoup.connect(webURL).userAgent("Mozilla").get();
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
 
-            Elements img = doc.select("img.photo-item__img");
+                theprice.setText("");
 
-            for (Element el : img) {
+                thegrowspan.setText("");
 
-                src = el.absUrl("src");
+                theseason.setText("");
 
-                Picasso.with(getContext())
-                        .load(src)
-                        .fit()
-                        .centerCrop()
-                        .into(display);
+                n_temp.setText("");
 
-                display.setVisibility(View.VISIBLE);
+                n_hum.setText("");
 
-                break;
+                n_ph.setText("");
+
+                loading = new ProgressDialog(getContext(), R.style.MyTheme);
+
+                loading.setCancelable(false);
+
+                loading.setTitle("Wait");
+
+                loading.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+
+                loading.show();
 
             }
 
-            if (src == "") {
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
 
-                alert("No Image Found!");
+                if (s.isEmpty()) {
+
+                    alert("No Image Found!");
+
+                    display.setVisibility(View.GONE);
+
+                    header.setVisibility(View.VISIBLE);
+
+                    header.setText("Results");
+
+                    header.setTextColor(getResources().getColor(R.color.black));
+
+                    data.setVisibility(View.VISIBLE);
+
+                    getNow();
+
+                } else {
+
+                    Picasso.with(getContext())
+                            .load(s)
+                            .fit()
+                            .centerCrop()
+                            .into(display);
+
+                    display.setVisibility(View.VISIBLE);
+
+                    header.setVisibility(View.VISIBLE);
+
+                    header.setText("Results");
+
+                    header.setTextColor(getResources().getColor(R.color.black));
+
+                    data.setVisibility(View.VISIBLE);
+
+                    getNow();
+
+                }
+
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                String result = getImageBackground(image);
+
+                return result;
+
+            }
+        }
+
+        RegisterUser ru = new RegisterUser();
+
+        ru.execute(image);
+
+    }
+
+
+    private String getNowBackground() {
+
+        try {
+
+            // Fetch JSON From DataSet
+
+            HttpClient httpclient = new DefaultHttpClient();
+
+            HttpGet httpget = new HttpGet(DARK_SKY_API + searchterm);
+
+            HttpResponse res = httpclient.execute(httpget);
+
+            if (res.getStatusLine().getStatusCode() == 200) {
+
+                // Sort The JSON By Objects & Arrays
+
+                dark_sky = EntityUtils.toString(res.getEntity());
+
 
             } else {
 
-                header.setVisibility(View.VISIBLE);
-
-                header.setText("Results");
-
-                header.setTextColor(getResources().getColor(R.color.black));
-
-                data.setVisibility(View.VISIBLE);
-
-                getTemp(searchterm);
+                alert("Failed To Get Current Weather Status!");
 
             }
 
@@ -341,10 +353,142 @@ public class Search extends Fragment {
 
         }
 
+        return dark_sky;
+
     }
 
 
-    private void getTemp(String vegetable) {
+    private void getNow() {
+
+        class RegisterUser extends AsyncTask<String, Void, String> {
+
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+                loading = new ProgressDialog(getContext(), R.style.MyTheme);
+
+                loading.setCancelable(false);
+
+                loading.setTitle("Fetching Data In Gandhinagar");
+
+                loading.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+
+                loading.show();
+
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+
+                try {
+
+                    dark_sky_object = new JSONObject(dark_sky);
+
+                    dark_sky_array = dark_sky_object.getJSONArray("data");
+
+
+                    // Get Specific Data For Current Conditions From DataSet
+
+                    for (int i = 0; i < dark_sky_array.length(); i++) {
+
+                        JSONObject jsonobject = dark_sky_array.getJSONObject(i);
+
+                        ns_temp = jsonobject.getString("Temperature High");
+
+                        ns_hum = jsonobject.getString("Humidity");
+
+                        ns_ph = jsonobject.getString("pH");
+
+                        season = jsonobject.getString("Season");
+
+                        growspan = jsonobject.getString("Growth Span");
+
+                        price_min = jsonobject.getString("Price Min");
+
+                        price_max = jsonobject.getString("Price Max");
+
+                        float p_min = Float.parseFloat(price_min);
+
+                        float p_max = Float.parseFloat(price_max);
+
+                        // Set Market Price
+
+                        price = (p_min + p_max) / 2;
+
+                        theprice.setText("₹ " + String.valueOf(price) + "/KG");
+
+
+                        // Set Grow Span
+
+                        thegrowspan.setText(growspan + " Days Approx.");
+
+
+                        // Set Season
+
+                        theseason.setText(season);
+
+
+                        // Set Current Temperature
+
+                        float t_now = Float.parseFloat(ns_temp);
+
+                        t_now = Math.round(t_now);
+
+                        n_temp.setText(String.valueOf(t_now) + "°C");
+
+
+                        // Set Current Humidity
+
+                        float h_now = Float.parseFloat(ns_hum);
+
+                        h_now = h_now * 100;
+
+                        n_hum.setText(String.valueOf(h_now) + "%");
+
+
+                        // Set pH
+
+                        i_ph.setText(is_ph);
+
+                        float now = Float.parseFloat(ns_ph);
+
+                        n_ph.setText(String.valueOf(now));
+
+
+                    }
+
+                } catch (JSONException e) {
+
+                    e.printStackTrace();
+
+                }
+
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                String result = getNowBackground().toString();
+
+                return result;
+
+            }
+
+        }
+
+        RegisterUser ru = new RegisterUser();
+
+        ru.execute();
+
+    }
+
+
+    private String getTempBackground(String vegetable) {
 
         try {
 
@@ -384,110 +528,7 @@ public class Search extends Fragment {
 
                     for (int i = 0; i < ent.length(); i++) {
 
-                        JSONObject jsonobject = ent.getJSONObject(i);
-
-                        is_temp = jsonobject.getString("text");
-
-                    }
-
-                    i_temp.setText(is_temp);
-
-
-                    // Fetch JSON From DataSet
-
-                    HttpClient httpclient = new DefaultHttpClient();
-
-                    HttpGet httpget = new HttpGet(DARK_SKY_API + searchterm);
-
-                    HttpResponse res = httpclient.execute(httpget);
-
-                    if (res.getStatusLine().getStatusCode() == 200) {
-
-
-                        // Sort The JSON By Objects & Arrays
-
-                        dark_sky = EntityUtils.toString(res.getEntity());
-
-                        dark_sky_object = new JSONObject(dark_sky);
-
-                        dark_sky_array = dark_sky_object.getJSONArray("data");
-
-
-                        // Get Specific Data For Current Conditions From DataSet
-
-                        for (int i = 0; i < dark_sky_array.length(); i++) {
-
-                            JSONObject jsonobject = dark_sky_array.getJSONObject(i);
-
-                            ns_temp = jsonobject.getString("Temperature High");
-
-                            ns_hum = jsonobject.getString("Humidity");
-
-                            ns_ph = jsonobject.getString("pH");
-
-                            season = jsonobject.getString("Season");
-
-                            growspan = jsonobject.getString("Growth Span");
-
-                            price_min = jsonobject.getString("Price Min");
-
-                            price_max = jsonobject.getString("Price Max");
-
-                            float p_min = Integer.parseInt(price_min);
-
-                            float p_max = Integer.parseInt(price_max);
-
-                            // Set Market Price
-
-                            price = (p_min + p_max) / 2;
-
-                            theprice.setText("₹ " + String.valueOf(price) + "/KG");
-
-
-                            // Set Grow Span
-
-                            thegrowspan.setText(growspan + " Days Approx.");
-
-
-                            // Set Season
-
-                            theseason.setText(season);
-
-
-                            // Set Current Temperature
-
-                            float t_now = Float.parseFloat(ns_temp);
-
-                            t_now = Math.round(t_now);
-
-                            n_temp.setText(String.valueOf(t_now) + "°C");
-
-
-                            // Set Current Humidity
-
-                            float h_now = Float.parseFloat(ns_hum);
-
-                            h_now = h_now * 100;
-
-                            n_hum.setText(String.valueOf(h_now) + "%");
-
-                            getHum(searchterm);
-
-
-                            // Set pH
-
-                            i_ph.setText(is_ph);
-
-                            float now = Float.parseFloat(ns_ph);
-
-                            n_ph.setText(String.valueOf(now));
-
-
-                        }
-
-                    } else {
-
-                        alert("Failed To Get Current Weather Status!");
+                        tempjsonobject = ent.getJSONObject(i);
 
                     }
 
@@ -504,6 +545,71 @@ public class Search extends Fragment {
             e.printStackTrace();
 
         }
+
+        return tempjsonobject.toString();
+
+    }
+
+
+    private void getTemp(final String vegetable) {
+
+        class RegisterUser extends AsyncTask<String, Void, String> {
+
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+                loading = new ProgressDialog(getContext(), R.style.MyTheme);
+
+                loading.setCancelable(false);
+
+                loading.setTitle("Fetching Data In Gandhinagar");
+
+                loading.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+
+                loading.show();
+
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+
+                try {
+
+                    JSONObject result = new JSONObject(s);
+
+                    is_temp = result.getString("text");
+
+                    i_temp.setText(is_temp);
+
+                }
+
+                catch (JSONException e) {
+
+                    e.printStackTrace();
+
+                }
+
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                String result = getTempBackground(vegetable);
+
+                return result;
+
+            }
+
+        }
+
+        RegisterUser ru = new RegisterUser();
+
+        ru.execute();
 
     }
 
