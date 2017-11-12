@@ -1,0 +1,255 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.daiict.shram.Fragments.Search">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:layout_marginStart="10sp"
+        android:background="@drawable/card_grey"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:background="@drawable/card">
+
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:background="@drawable/card"
+                android:drawableLeft="@drawable/search"
+                android:fontFamily="sans-serif-smallcaps"
+                android:gravity="center"
+                android:hint="@string/croptype"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColor="#99000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/display"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5sp"
+            android:background="@drawable/normal_card"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:background="@drawable/card"
+                android:fontFamily="sans-serif-smallcaps"
+                android:gravity="center"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:text=""
+                android:textColor="#000000"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#E3E3E3">
+
+                <LinearLayout
+                    android:id="@+id/data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/location"
+                        android:layout_width="match_parent"
+                        android:layout_height="120sp"
+                        android:background="@drawable/normal_card"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:text="Location"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:textSize="19sp"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@drawable/border" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Gandhinagar, Gujrat"
+                            android:gravity="center"
+                            android:textColor="#27ae60"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/temperature"
+                        android:layout_width="match_parent"
+                        android:layout_height="150sp"
+                        android:background="@drawable/normal_card"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:text="Temperature"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:textSize="19sp"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@drawable/border" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:text="Ideal"
+                                android:gravity="center"
+                                android:textSize="18sp"
+                                android:textStyle="bold"/>
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/border" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:text="Now"
+                                android:gravity="center"
+                                android:textSize="18sp"
+                                android:textStyle="bold"/>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@drawable/border" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/i_temp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:text=""
+                                android:gravity="center"
+                                android:textSize="18sp"
+                                android:textStyle="bold"/>
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/border" />
+
+                            <TextView
+                                android:id="@+id/n_temp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:textSize="18sp"
+                                android:textStyle="bold"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/humidity"
+                        android:layout_width="match_parent"
+                        android:layout_height="100sp"
+                        android:background="@drawable/normal_card"
+                        android:orientation="vertical">
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/moisture"
+                        android:layout_width="match_parent"
+                        android:layout_height="100sp"
+                        android:background="@drawable/normal_card"
+                        android:orientation="vertical">
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ph"
+                        android:layout_width="match_parent"
+                        android:layout_height="100sp"
+                        android:background="@drawable/normal_card"
+                        android:orientation="vertical">
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/time"
+                        android:layout_width="match_parent"
+                        android:layout_height="100sp"
+                        android:background="@drawable/normal_card"
+                        android:orientation="vertical">
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
