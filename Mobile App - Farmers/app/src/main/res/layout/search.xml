@@ -54,7 +54,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5sp"
+            android:layout_marginEnd="5sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:layout_marginStart="5sp"
+            android:layout_marginTop="10sp"
             android:background="@drawable/normal_card"
             android:orientation="vertical">
 
@@ -69,7 +73,7 @@
                 android:inputType="text"
                 android:text=""
                 android:textColor="#000000"
-                android:textSize="17sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
 
@@ -82,22 +86,24 @@
                     android:id="@+id/data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:id="@+id/location"
                         android:layout_width="match_parent"
                         android:layout_height="120sp"
+                        android:layout_marginTop="5sp"
                         android:background="@drawable/normal_card"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="40sp"
-                            android:text="Location"
+                            android:fontFamily="sans-serif-smallcaps"
                             android:gravity="center"
-                            android:textStyle="bold"
-                            android:textSize="19sp"/>
+                            android:text="Location"
+                            android:textSize="20sp" />
 
                         <View
                             android:layout_width="match_parent"
@@ -107,27 +113,99 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="Gandhinagar, Gujrat"
+                            android:fontFamily="sans-serif-smallcaps"
                             android:gravity="center"
-                            android:textColor="#27ae60"
-                            android:textSize="18sp"/>
+                            android:text="Gandhinagar, Gujrat"
+                            android:textColor="@color/light_blue_500"
+                            android:textSize="19sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/temperature"
+                        android:id="@+id/price"
                         android:layout_width="match_parent"
-                        android:layout_height="150sp"
+                        android:layout_height="120sp"
+                        android:layout_marginTop="5sp"
                         android:background="@drawable/normal_card"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="40sp"
-                            android:text="Temperature"
+                            android:fontFamily="sans-serif-smallcaps"
                             android:gravity="center"
-                            android:textStyle="bold"
-                            android:textSize="19sp"/>
+                            android:text="MARKET PRICE"
+                            android:textSize="20sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@drawable/border" />
+
+                        <TextView
+                            android:id="@+id/theprice"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/light_blue_500"
+                            android:textSize="19sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/growgrow"
+                        android:layout_width="match_parent"
+                        android:layout_height="120sp"
+                        android:layout_marginTop="5sp"
+                        android:background="@drawable/normal_card"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:gravity="center"
+                            android:text="GROW SPAN"
+                            android:textSize="20sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@drawable/border" />
+
+                        <TextView
+                            android:id="@+id/thegrowspan"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/light_blue_500"
+                            android:textSize="19sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/season"
+                        android:layout_width="match_parent"
+                        android:layout_height="150sp"
+                        android:layout_marginTop="5sp"
+                        android:background="@drawable/normal_card"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:gravity="center"
+                            android:text="Season"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
                         <View
                             android:layout_width="match_parent"
@@ -144,10 +222,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.5"
-                                android:text="Ideal"
+                                android:fontFamily="sans-serif-smallcaps"
                                 android:gravity="center"
+                                android:text="Ideal"
                                 android:textSize="18sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
 
                             <View
                                 android:layout_width="1dp"
@@ -158,10 +237,109 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.5"
-                                android:text="Now"
+                                android:fontFamily="sans-serif-smallcaps"
                                 android:gravity="center"
+                                android:text="Now"
                                 android:textSize="18sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@drawable/border" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/theseason"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:gravity="center"
+                                android:text=""
+                                android:textColor="@color/light_blue_500"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/border" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:gravity="center"
+                                android:text="Pre-Winter"
+                                android:textColor="@color/light_blue_500"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/temperature"
+                        android:layout_width="match_parent"
+                        android:layout_height="150sp"
+                        android:layout_marginTop="5sp"
+                        android:background="@drawable/normal_card"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:gravity="center"
+                            android:text="Temperature"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@drawable/border" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:gravity="center"
+                                android:text="Ideal"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/border" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:gravity="center"
+                                android:text="Now"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -181,10 +359,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.5"
-                                android:text=""
+                                android:fontFamily="sans-serif-smallcaps"
                                 android:gravity="center"
+                                android:text=""
+                                android:textColor="@color/light_blue_500"
                                 android:textSize="18sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
 
                             <View
                                 android:layout_width="1dp"
@@ -196,9 +376,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.5"
+                                android:fontFamily="sans-serif-smallcaps"
                                 android:gravity="center"
+                                android:textColor="@color/light_blue_500"
                                 android:textSize="18sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -207,40 +389,196 @@
                     <LinearLayout
                         android:id="@+id/humidity"
                         android:layout_width="match_parent"
-                        android:layout_height="100sp"
+                        android:layout_height="150sp"
+                        android:layout_marginTop="5sp"
                         android:background="@drawable/normal_card"
                         android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:gravity="center"
+                            android:text="Humidity"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
-                    </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@drawable/border" />
 
-                    <LinearLayout
-                        android:id="@+id/moisture"
-                        android:layout_width="match_parent"
-                        android:layout_height="100sp"
-                        android:background="@drawable/normal_card"
-                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
 
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:gravity="center"
+                                android:text="Ideal"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/border" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:gravity="center"
+                                android:text="Now"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@drawable/border" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/i_hum"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:gravity="center"
+                                android:text=""
+                                android:textColor="@color/light_blue_500"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/border" />
+
+                            <TextView
+                                android:id="@+id/n_hum"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:gravity="center"
+                                android:textColor="@color/light_blue_500"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/ph"
                         android:layout_width="match_parent"
-                        android:layout_height="100sp"
+                        android:layout_height="150sp"
+                        android:layout_marginTop="5sp"
                         android:background="@drawable/normal_card"
                         android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:gravity="center"
+                            android:text="pH"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
-                    </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@drawable/border" />
 
-                    <LinearLayout
-                        android:id="@+id/time"
-                        android:layout_width="match_parent"
-                        android:layout_height="100sp"
-                        android:background="@drawable/normal_card"
-                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
 
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:gravity="center"
+                                android:text="Ideal"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/border" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:gravity="center"
+                                android:text="Now"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@drawable/border" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/i_ph"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:gravity="center"
+                                android:text=""
+                                android:textColor="@color/light_blue_500"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/border" />
+
+                            <TextView
+                                android:id="@+id/n_ph"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:gravity="center"
+                                android:textColor="@color/light_blue_500"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
